@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import Button, { Label } from '@smui/button';
 
 	export let intervals: string | null;
 
@@ -65,9 +66,22 @@
 	};
 </script>
 
+<style>
+	.center {
+		display: flex;
+		justify-content: center;
+	}
+	
+	#displayTimer {
+		text-align: center;
+	}
+</style>
+
 {#if _intervals.length > 0}
-	<p>{displayedTime}</p>
-	<button on:click={start}>Start</button>
-{:else}
-	<p>Enter a list of intervals in seconds to create a timer</p>
+	<p id="displayTimer">{displayedTime}</p>
+	<div class="center">
+	<Button on:click={start} variant="unelevated" class="button-shaped-round">
+		<Label>Start</Label>
+	</Button>
+	</div>
 {/if}
