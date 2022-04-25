@@ -8,8 +8,11 @@ const config = {
 	preprocess: preprocess(),
 
 	kit: {
-		adapter: adapter()
-	}
+		adapter: adapter({
+			pages: 'public',
+			assets: 'public'
+		})
+}
 };
 
 export default config;
