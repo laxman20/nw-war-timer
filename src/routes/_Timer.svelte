@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import Button, { Label } from '@smui/button';
+	import Card, { Content } from '@smui/card';
 
 	export let intervals: string | null;
 
@@ -70,7 +71,11 @@
 </script>
 
 {#if _intervals.length > 0}
-	<p id="displayTimer">{displayedTime}</p>
+	<div class="card-container">
+		<Card>
+		  <Content><p id="displayTimer">{displayedTime}</p></Content>
+		</Card>
+	  </div>
 	<div class="center">
 		<Button on:click={start} variant="unelevated" class="button-shaped-round">
 			<Label>Start</Label>
@@ -86,5 +91,17 @@
 
 	#displayTimer {
 		text-align: center;
+		font-family: Roboto;
+		font-weight: 1000;
+		font-size: 200%;
 	}
+	
+	.card-container {
+		margin-top: 15px;
+		margin-bottom: 15px;
+		margin-left: 150px;
+		margin-right: 150px;
+		background-color: var(--mdc-theme-background, #f8f8f8);
+	}
+
 </style>
