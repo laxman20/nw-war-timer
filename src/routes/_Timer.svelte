@@ -6,7 +6,7 @@
 
 	const SECONDS_MAX = 30 * 60;
 
-	let timer: number | null;
+	let timer: NodeJS.Timer | null;
 	let beep: HTMLAudioElement;
 
 	$: _intervals = intervalChanged(intervals);
@@ -34,14 +34,14 @@
 		}
 	};
 
-	const tick = function () {
-		const currentTime = _intervals[0]--;
+	const tick = function (intrvls: number[]) {
+		const currentTime = intrvls[0]--;
 		displayedTime = toTimeString(currentTime);
 		playSound(currentTime);
-		if (_intervals[0] <= 0) {
-			_intervals.shift();
+		if (intrvls[0] <= 0) {
+			intrvls.shift();
 		}
-		if (_intervals.length == 0) {
+		if (intrvls.length == 0) {
 			stop();
 		}
 	};
@@ -53,7 +53,10 @@
 	};
 
 	const start = function () {
-		timer = setInterval(tick, 1000, 0);
+		stop();
+		const intervals = [..._intervals];
+		tick(intervals);
+		timer = setInterval(tick, 1000, intervals);
 	};
 
 	const toTimeString = function (currentTime: number): string {
@@ -66,22 +69,22 @@
 	};
 </script>
 
+{#if _intervals.length > 0}
+	<p id="displayTimer">{displayedTime}</p>
+	<div class="center">
+		<Button on:click={start} variant="unelevated" class="button-shaped-round">
+			<Label>Start</Label>
+		</Button>
+	</div>
+{/if}
+
 <style>
 	.center {
 		display: flex;
 		justify-content: center;
 	}
-	
+
 	#displayTimer {
 		text-align: center;
 	}
 </style>
-
-{#if _intervals.length > 0}
-	<p id="displayTimer">{displayedTime}</p>
-	<div class="center">
-	<Button on:click={start} variant="unelevated" class="button-shaped-round">
-		<Label>Start</Label>
-	</Button>
-	</div>
-{/if}
