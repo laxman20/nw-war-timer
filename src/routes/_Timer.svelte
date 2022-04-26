@@ -11,7 +11,8 @@
 	let beep: HTMLAudioElement;
 
 	$: _intervals = intervalChanged(intervals);
-	$: displayedTime = toTimeString(_intervals[0]);
+	$: respawnTime = _intervals[0];
+	let clockTime = SECONDS_MAX;
 
 	onMount(() => {
 		beep = new Audio('/sounds/beep.mp3');
@@ -35,14 +36,14 @@
 		}
 	};
 
-	const tick = function (intrvls: number[]) {
-		const currentTime = intrvls[0]--;
-		displayedTime = toTimeString(currentTime);
-		playSound(currentTime);
-		if (intrvls[0] <= 0) {
-			intrvls.shift();
+	const tick = function (intervals: number[]) {
+		respawnTime = --intervals[0];
+		clockTime--;
+		playSound(respawnTime);
+		if (intervals[0] <= 0) {
+			intervals.shift();
 		}
-		if (intrvls.length == 0) {
+		if (intervals.length == 0) {
 			stop();
 		}
 	};
@@ -56,7 +57,7 @@
 	const start = function () {
 		stop();
 		const intervals = [..._intervals];
-		tick(intervals);
+		clockTime = SECONDS_MAX;
 		timer = setInterval(tick, 1000, intervals);
 	};
 
@@ -73,14 +74,15 @@
 {#if _intervals.length > 0}
 	<div class="card-container">
 		<Card>
-		  <Content><p id="displayTimer">{displayedTime}</p></Content>
+			<Content><p id="displayTimer">{toTimeString(respawnTime)}</p></Content>
 		</Card>
-	  </div>
+	</div>
 	<div class="center">
 		<Button on:click={start} variant="unelevated" class="button-shaped-round">
 			<Label>Start</Label>
 		</Button>
 	</div>
+	<p>Clock Time: {toTimeString(clockTime)}</p>
 {/if}
 
 <style>
@@ -95,7 +97,7 @@
 		font-weight: 1000;
 		font-size: 200%;
 	}
-	
+
 	.card-container {
 		margin-top: 15px;
 		margin-bottom: 15px;
@@ -103,5 +105,4 @@
 		margin-right: 150px;
 		background-color: var(--mdc-theme-background, #f8f8f8);
 	}
-
 </style>
