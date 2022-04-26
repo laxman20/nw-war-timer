@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { goto } from '$app/navigation';
 	import Textfield from '@smui/textfield';
 	import HelperText from '@smui/textfield/helper-text';
 	import Timer from './_Timer.svelte';
@@ -11,7 +10,7 @@
 		if (intervals) {
 			const url = new URL(window.location.toString());
 			url.searchParams.set('intervals', intervals);
-			goto(url.href, { replaceState: true });
+			history.replaceState({}, '', url.href);
 		}
 	};
 </script>
