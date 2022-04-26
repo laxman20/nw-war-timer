@@ -75,6 +75,7 @@
 	<div class="card-container">
 		<Card>
 			<Content><p id="displayTimer">{toTimeString(respawnTime)}</p></Content>
+			<Content><p id="clockTimer">Clock Time: {toTimeString(clockTime)}</p></Content>
 		</Card>
 	</div>
 	<div class="center">
@@ -82,7 +83,6 @@
 			<Label>Start</Label>
 		</Button>
 	</div>
-	<p>Clock Time: {toTimeString(clockTime)}</p>
 {/if}
 
 <style>
@@ -96,6 +96,11 @@
 		font-family: Roboto;
 		font-weight: 1000;
 		font-size: 200%;
+	}
+
+	#clockTimer {
+		font-family: Roboto;
+		font-weight: 1000;
 	}
 
 	.card-container {
