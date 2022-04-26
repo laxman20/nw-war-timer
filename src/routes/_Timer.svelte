@@ -81,13 +81,17 @@
 {#if _intervals.length > 0}
 	<div class="card-container">
 		<Card>
-			<Content><p id="displayTimer">{toTimeString(respawnTime)}</p></Content>
-			<Content><p id="clockTimer">Clock Time: {toTimeString(clockTime)}</p></Content>
+			<Content
+				><p id="displayTimer" class="mdc-typography--headline3">
+					{toTimeString(respawnTime)}
+				</p></Content
+			>
+			<Content><p class="mdc-typography--headline6">Clock Time: {toTimeString(clockTime)}</p></Content>
 		</Card>
 	</div>
 	<div class="center">
 		<Button on:click={start} variant="unelevated" class="button-shaped-round">
-			<Label>Start</Label>
+			<Label>{timer ? "Reset" : "Start"}</Label>
 		</Button>
 	</div>
 {/if}
@@ -100,14 +104,6 @@
 
 	#displayTimer {
 		text-align: center;
-		font-family: Roboto;
-		font-weight: 1000;
-		font-size: 200%;
-	}
-
-	#clockTimer {
-		font-family: Roboto;
-		font-weight: 1000;
 	}
 
 	.card-container {
