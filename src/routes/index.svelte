@@ -19,7 +19,6 @@
 	<Textfield
 		style="width: 100%;"
 		helperLine$style="width: 100%;"
-		textarea
 		bind:value={intervals}
 		label="Intervals"
 	>
