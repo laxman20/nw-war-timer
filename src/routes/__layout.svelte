@@ -1,4 +1,7 @@
 <script lang="ts">
+	import '@fontsource/roboto';
+	import '@fontsource/roboto-mono';
+	import 'material-icons/iconfont/material-icons.css';
 	import TopAppBar, { Row, Section, Title, AutoAdjust } from '@smui/top-app-bar';
 	import type { TopAppBarComponentDev } from '@smui/top-app-bar';
 
