@@ -86,12 +86,14 @@
 					{toTimeString(respawnTime)}
 				</p></Content
 			>
-			<Content><p class="mdc-typography--headline6">Clock Time: {toTimeString(clockTime)}</p></Content>
+			<Content
+				><p class="mdc-typography--headline6">Clock Time: {toTimeString(clockTime)}</p></Content
+			>
 		</Card>
 	</div>
 	<div class="center">
 		<Button on:click={start} variant="unelevated" class="button-shaped-round">
-			<Label>{timer ? "Reset" : "Start"}</Label>
+			<Label>{timer ? 'Reset' : 'Start'}</Label>
 		</Button>
 	</div>
 {/if}
