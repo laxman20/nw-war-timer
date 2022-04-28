@@ -13,7 +13,10 @@
 	};
 </script>
 
+<label for="intervals" class="font-medium text-gray-900">Intervals</label>
 <textarea
+	id="intervals"
+  placeholder="10,10"
 	class="
         block
         w-full
