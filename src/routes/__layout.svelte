@@ -1,27 +1,14 @@
 <script lang="ts">
-	import '@fontsource/roboto';
-	import '@fontsource/roboto-mono';
-	import 'material-icons/iconfont/material-icons.css';
-	import TopAppBar, { Row, Section, Title, AutoAdjust } from '@smui/top-app-bar';
-	import type { TopAppBarComponentDev } from '@smui/top-app-bar';
-
-	let topAppBar: TopAppBarComponentDev;
+	import '../app.css';
 </script>
 
 <svelte:head>
 	<title>New World War Timer</title>
 </svelte:head>
 
-<TopAppBar bind:this={topAppBar} variant="static" color="secondary">
-	<Row>
-		<Section>
-			<Title>New World War Timer</Title>
-		</Section>
-	</Row>
-</TopAppBar>
-
-<AutoAdjust {topAppBar}>
-	<div class="container">
-		<slot />
-	</div>
-</AutoAdjust>
+<h1 class="font-medium leading-tight text-2xl text-white px-4 py-4 bg-gray-500">
+	New World War Timer
+</h1>
+<div class="px-4 py-4">
+	<slot />
+</div>

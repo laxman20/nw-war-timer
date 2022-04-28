@@ -1,7 +1,5 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
-	import Button, { Label } from '@smui/button';
-	import Card, { Content } from '@smui/card';
 
 	export let intervals: string | null;
 
@@ -84,40 +82,16 @@
 </script>
 
 {#if _intervals.length > 0}
-	<div class="card-container">
-		<Card>
-			<Content
-				><p id="displayTimer" class="mdc-typography--headline3">
-					{toTimeString(respawnTime)}
-				</p></Content
-			>
-			<Content
-				><p class="mdc-typography--headline6">Clock Time: {toTimeString(clockTime)}</p></Content
-			>
-		</Card>
+	<div class="rounded overflow-hidden shadow-lg p-4 mx-40">
+		<p class="text-5xl flex justify-center items-center my-10">{toTimeString(respawnTime)}</p>
+		<p class="font-medium text-lg">Clock Time: {toTimeString(clockTime)}</p>
 	</div>
-	<div class="center">
-		<Button on:click={start} variant="unelevated" class="button-shaped-round">
-			<Label>{timer ? 'Reset' : 'Start'}</Label>
-		</Button>
+	<div class="flex justify-center my-4">
+		<button
+			class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
+			on:click={start}
+		>
+			{timer ? 'RESET' : 'START'}
+		</button>
 	</div>
 {/if}
-
-<style>
-	.center {
-		display: flex;
-		justify-content: center;
-	}
-
-	#displayTimer {
-		text-align: center;
-	}
-
-	.card-container {
-		margin-top: 15px;
-		margin-bottom: 15px;
-		margin-left: 150px;
-		margin-right: 150px;
-		background-color: var(--mdc-theme-background, #f8f8f8);
-	}
-</style>
