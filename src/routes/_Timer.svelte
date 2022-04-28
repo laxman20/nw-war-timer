@@ -67,6 +67,7 @@
 	const start = function () {
 		stop();
 		const intervals = [..._intervals];
+		respawnTime = intervals[0];
 		clockTime = SECONDS_MAX;
 		timer = setInterval(tick, 1000, intervals);
 	};

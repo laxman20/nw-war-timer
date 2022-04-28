@@ -15,7 +15,7 @@
 
 <label for="intervals" class="font-medium text-gray-900">Intervals</label>
 <textarea
-	id="intervals"
+	name="intervals"
   placeholder="10,10"
 	class="
         block
