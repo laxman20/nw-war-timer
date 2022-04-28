@@ -27,7 +27,7 @@
 		on:input={textChanged}
 		label="Intervals"
 	>
-		<HelperText slot="helper">Enter a list of intervals in seconds to create a timer</HelperText>
+		<HelperText persistent slot="helper">Enter a list of intervals in seconds to create a timer</HelperText>
 	</Textfield>
 </div>
 
