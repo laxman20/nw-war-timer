@@ -14,9 +14,9 @@
 		}
 	};
 
-	const textChanged = function() {
+	const textChanged = function () {
 		setURL();
-	}
+	};
 </script>
 
 <div class="margins">
@@ -27,7 +27,9 @@
 		on:input={textChanged}
 		label="Intervals"
 	>
-		<HelperText persistent slot="helper">Enter a list of intervals in seconds to create a timer</HelperText>
+		<HelperText persistent slot="helper"
+			>Enter a list of intervals in seconds to create a timer</HelperText
+		>
 	</Textfield>
 </div>
 

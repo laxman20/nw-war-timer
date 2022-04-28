@@ -9,10 +9,10 @@
 
 	let timer: NodeJS.Timer | null;
 	let beep: HTMLAudioElement;
+	let respawnTime = 0;
+	let clockTime = SECONDS_MAX;
 
 	$: _intervals = intervalChanged(intervals);
-	$: respawnTime = _intervals[0];
-	let clockTime = SECONDS_MAX;
 
 	onMount(() => {
 		beep = new Audio('/sounds/beep.mp3');
@@ -28,10 +28,15 @@
 		if (!i) {
 			return [];
 		}
-		return i
+		const intervals = i
 			.split(',')
 			.map((s) => s.trim())
 			.map((s) => parseInt(s));
+
+		respawnTime = intervals[0];
+		clockTime = SECONDS_MAX;
+
+		return intervals;
 	};
 
 	const stop = function () {
@@ -50,6 +55,8 @@
 		}
 		if (intervals.length == 0) {
 			stop();
+			respawnTime = _intervals[0];
+			clockTime = SECONDS_MAX;
 		}
 	};
 
