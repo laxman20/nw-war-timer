@@ -13,6 +13,10 @@
 			history.replaceState({}, '', url.href);
 		}
 	};
+
+	const textChanged = function() {
+		setURL();
+	}
 </script>
 
 <div class="margins">
@@ -20,10 +24,11 @@
 		style="width: 100%;"
 		helperLine$style="width: 100%;"
 		bind:value={intervals}
+		on:input={textChanged}
 		label="Intervals"
 	>
 		<HelperText slot="helper">Enter a list of intervals in seconds to create a timer</HelperText>
 	</Textfield>
 </div>
 
-<Timer bind:intervals on:start={setURL} />
+<Timer bind:intervals />

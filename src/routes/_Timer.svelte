@@ -1,12 +1,11 @@
 <script lang="ts">
-	import { onMount, onDestroy, createEventDispatcher } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 	import Button, { Label } from '@smui/button';
 	import Card, { Content } from '@smui/card';
 
 	export let intervals: string | null;
 
 	const SECONDS_MAX = 30 * 60;
-	const dispatch = createEventDispatcher();
 
 	let timer: NodeJS.Timer | null;
 	let beep: HTMLAudioElement;
@@ -65,7 +64,6 @@
 		const intervals = [..._intervals];
 		clockTime = SECONDS_MAX;
 		timer = setInterval(tick, 1000, intervals);
-		dispatch('start');
 	};
 
 	const toTimeString = function (currentTime: number): string {
