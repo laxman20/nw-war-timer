@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import Timer from './_Timer.svelte';
+  import Timer from '$lib/components/Timer.svelte';
 
 	let intervals = $page.url.searchParams.get('intervals');
 
