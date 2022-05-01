@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount, onDestroy } from 'svelte';
+	import { onDestroy } from 'svelte';
 
 	export let intervals: string | null;
 
@@ -11,11 +11,6 @@
 	let clockTime = SECONDS_MAX;
 
 	$: _intervals = intervalChanged(intervals);
-
-	onMount(() => {
-		beep = new Audio('/sounds/beep.mp3');
-		beep.crossOrigin = 'anonymous';
-	});
 
 	onDestroy(() => {
 		stop();
@@ -98,3 +93,6 @@
 		</div>
 	</div>
 {/if}
+<audio bind:this={beep} src="/sounds/beep.mp3">
+	Your browser does not support the <code>audio</code> element.
+</audio>
