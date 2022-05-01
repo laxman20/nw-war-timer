@@ -83,16 +83,18 @@
 </script>
 
 {#if _intervals.length > 0}
-	<div class="rounded overflow-hidden shadow-lg p-4 mx-40">
-		<p class="text-5xl flex justify-center items-center my-10">{toTimeString(respawnTime)}</p>
-		<p class="font-medium text-lg">Clock Time: {toTimeString(clockTime)}</p>
-	</div>
-	<div class="flex justify-center my-4">
-		<button
-			class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
-			on:click={start}
-		>
-			{timer ? 'RESET' : 'START'}
-		</button>
+	<div class="container mx-auto">
+		<div class="rounded overflow-hidden shadow-lg p-4 ">
+			<p class="text-5xl text-center my-10">{toTimeString(respawnTime)}</p>
+			<p class="font-medium text-lg">Clock Time: {toTimeString(clockTime)}</p>
+		</div>
+		<div class="text-center my-4">
+			<button
+				class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
+				on:click={start}
+			>
+				{timer ? 'RESET' : 'START'}
+			</button>
+		</div>
 	</div>
 {/if}
