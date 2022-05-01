@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onDestroy } from 'svelte';
+	import { page } from '$app/stores';
 
 	export let intervals: string | null;
 
@@ -93,6 +94,6 @@
 		</div>
 	</div>
 {/if}
-<audio bind:this={beep} src="/sounds/beep.mp3">
+<audio bind:this={beep} src={ $page.url.origin + '/sounds/beep.mp3' }>
 	Your browser does not support the <code>audio</code> element.
 </audio>
