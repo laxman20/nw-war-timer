@@ -94,6 +94,7 @@
 		</div>
 	</div>
 {/if}
-<audio bind:this={beep} src={ $page.url.origin + '/sounds/beep.mp3' }>
+<audio bind:this={beep}>
+	<source src={$page.url.origin + '/sounds/beep.mp3'} type="audio/mpeg" />
 	Your browser does not support the <code>audio</code> element.
 </audio>

@@ -26,7 +26,7 @@
 	py-1.5
 	text-base
 	font-normal
-	text-gray-dark
+	text-gray-700
 	bg-white bg-clip-padding
 	border border-solid border-gray
 	rounded
@@ -38,7 +38,7 @@
 	bind:value={intervals}
 	on:input={textChanged}
 />
-<div class="text-sm text-gray-dark mt-1">
+<div class="text-sm text-gray-700 mt-1">
 	Enter a list of intervals in seconds to create a timer
 </div>
 
