@@ -82,7 +82,12 @@
 	<div class="container mx-auto">
 		<div class="rounded overflow-hidden shadow-lg p-4 ">
 			<p class="text-5xl text-center my-10">{toTimeString(respawnTime)}</p>
-			<p class="font-medium text-lg">Clock Time: {toTimeString(clockTime)}</p>
+			<div class="flex justify-between flex-col sm:flex-row">
+				<span class="font-medium text-lg text-center">Clock Time: {toTimeString(clockTime)}</span>
+				<span class="font-medium text-lg text-center"
+					>Next Respawn: {toTimeString(clockTime - respawnTime)}</span
+				>
+			</div>
 		</div>
 		<div class="text-center my-4">
 			<button
