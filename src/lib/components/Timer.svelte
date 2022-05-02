@@ -56,6 +56,7 @@
 
 	const playSound = function (currentTime: number) {
 		if (0 < currentTime && currentTime <= 5) {
+			beep.volume = 1;
 			beep.play();
 		}
 	};
@@ -65,6 +66,8 @@
 		const intervals = [..._intervals];
 		respawnTime = intervals[0];
 		clockTime = SECONDS_MAX;
+		beep.volume = 0;
+		beep.play();
 		timer = setInterval(tick, 1000, intervals);
 	};
 
