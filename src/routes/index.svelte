@@ -38,8 +38,6 @@
 	bind:value={intervals}
 	on:input={textChanged}
 />
-<div class="text-sm text-gray-700 mt-1">
-	Enter a list of intervals in seconds to create a timer
-</div>
+<div class="text-sm text-gray-700 mt-1">Enter a list of intervals in seconds to create a timer</div>
 
 <Timer bind:intervals />

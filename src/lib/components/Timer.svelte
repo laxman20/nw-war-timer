@@ -12,6 +12,7 @@
 	let clockTime = SECONDS_MAX;
 
 	$: _intervals = intervalChanged(intervals);
+	$: respawnClockTimes = createClockTimes(_intervals);
 
 	onDestroy(() => {
 		stop();
@@ -31,6 +32,16 @@
 		clockTime = SECONDS_MAX;
 
 		return intervals;
+	};
+
+	const createClockTimes = function (intervals: number[]): string[] {
+		let remaining = SECONDS_MAX;
+		const result = [];
+		for (let interval of intervals) {
+			result.push(toTimeString(remaining - interval));
+			remaining -= interval;
+		}
+		return result;
 	};
 
 	const stop = function () {
@@ -100,6 +111,12 @@
 				{timer ? 'RESET' : 'START'}
 			</button>
 		</div>
+	</div>
+	<p class="text-lg font-bold text-gray-900">Respawn Times</p>
+	<div class="flex flex-wrap gap-x-8 gap-y-1 flex-row">
+		{#each respawnClockTimes as respawnClockTime}
+			<span class="text-gray-900">{respawnClockTime}</span>
+		{/each}
 	</div>
 {/if}
 <audio bind:this={beep}>
