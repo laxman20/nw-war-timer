@@ -9,6 +9,7 @@
 	let timer: NodeJS.Timer | null;
 	let beep: HTMLAudioElement;
 	let respawnTime = 0;
+	let nextRespawnTime = 0;
 	let clockTime = SECONDS_MAX;
 
 	$: _intervals = intervalChanged(intervals);
@@ -34,11 +35,11 @@
 		return intervals;
 	};
 
-	const createClockTimes = function (intervals: number[]): string[] {
+	const createClockTimes = function (intervals: number[]): number[] {
 		let remaining = SECONDS_MAX;
 		const result = [];
 		for (let interval of intervals) {
-			result.push(toTimeString(remaining - interval));
+			result.push(remaining - interval);
 			remaining -= interval;
 		}
 		return result;
@@ -54,6 +55,7 @@
 	const tick = function (intervals: number[]) {
 		respawnTime = --intervals[0];
 		clockTime--;
+		nextRespawnTime = clockTime - respawnTime;
 		playSound(respawnTime);
 		if (intervals[0] <= 0) {
 			intervals.shift();
@@ -115,7 +117,9 @@
 	<p class="text-lg font-bold text-gray-900">Respawn Times</p>
 	<div class="flex flex-wrap gap-x-8 gap-y-1 flex-row">
 		{#each respawnClockTimes as respawnClockTime}
-			<span class="text-gray-900">{respawnClockTime}</span>
+			<span class="text-gray-900" class:font-bold={respawnClockTime === nextRespawnTime}
+				>{toTimeString(respawnClockTime)}</span
+			>
 		{/each}
 	</div>
 {/if}
